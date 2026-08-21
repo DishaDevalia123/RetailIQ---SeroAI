@@ -14,6 +14,7 @@ Ask your retail sales data questions in plain English and get back calculated an
 - FastAPI + MySQL — backend and data layer
 
 **Tech Stack**
+
 Backend -	Python, FastAPI
 LLM -	OpenAI API (GPT)
 Database -	MySQL
