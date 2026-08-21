@@ -1,0 +1,30 @@
+BUSINESS CONTEXT FOR ANALYSIS:
+
+Company: 4-store retail chain selling men's formal shirts and trousers
+Stores: PRFRS, PRFCO, PRFT, MEM
+Brands: HV, Sero, Freezone, Sero Trousers, Fairdeal
+Sub Brands: HV, Formals, Freezone Casuals, Marry Me, Uth, White Gold, Premium, Cotton trousers, Denim, Formal Trousers, Freezone Boys, Fairdeal
+
+KEY BUSINESS PATTERNS:
+- Seasonal Business: Festival-driven sales with major peaks
+- Diwali Season (October): Biggest sales month, typically 2-3x normal volume
+- Pongal Season (January): Second peak, Tamil harvest festival
+- Christmas Season (December): Moderate boost, end-of-year sales
+- Wedding Season (November-February): Steady demand for formal wear
+
+PRODUCT MIX:
+- Premium positioning: Average transaction ₹2,500-4,000
+- Formal shirts: Higher volume, moderate margin
+- Formal trousers: Multiple margins catering to different needs
+- Premium sub-brands (HV, Premium): Highest margin
+
+
+
+
+
+
+
+
+
+
+

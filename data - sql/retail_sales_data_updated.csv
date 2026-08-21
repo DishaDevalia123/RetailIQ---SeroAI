@@ -1,0 +1,69 @@
+﻿Customer_Name,Customer_Contact,BILL_DATE,Bill_No.,Item_Division,Brand,Sub_Brand,Item_Description,Item_Barcode,Discount_Amount,Total_Amount,Item_Name,Sleeve,Size,SALE_QUANTITY,Store_Name,Color,Pattern,MRP,DP
+Alice Brown,7776665553,25/09/2024,INV7524R,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Plain,BC400009,808.56,7336.92,GAMA8545,F,38,4,PRFCO,Black,Print,1834.23,1509.56
+Elena Salvatore,9998887771,16/03/2024,INV2076,Shirt,HV,HV,Shirt Premium Striped,BC499407,1923.77,8895.95,YUVA-8214/6,H,39,5,PRFT,Red,Checks,1779.19,1414.95
+Klaus,8898887772,21/10/2024,INV7299R,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Checked,BC571579,300.76,5809.74,BETA8974,F,38,3,MEM,Green,Plain,1936.58,1423.69
+Elena Salvatore,9998887771,31/08/2024,INV3007R,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Plain,BC201514,722.72,5160.66,MC-8541/2,P,42,3,MEM,Blue,Plain,1720.22,1514.01
+Elena Salvatore,9998887771,01/04/2024,INV3526R,Shirt,HV,HV,Shirt Premium Striped,BC983456,853.11,4430.07,GAMA8555,F,36,3,PRFCO,Grey,Plain,1476.69,1225.78
+Stefan Davis,5554443335,20/03/2024,INV7797,Shirt,HV,HV,Shirt Premium Printed,BC393328,873.79,5349.54,ALFA-8745/9,H,37,3,PRFT,White,Plain,1783.18,1123.06
+Elena Salvatore,9998887771,24/06/2024,INV3185R,Shirt,Sero,Uth,Shirt Premium Striped,BC953025,912.67,3434.5,GAMA8543,H,41,2,MEM,Grey,Plain,1717.25,1062.86
+Elena Salvatore,9998887771,21/03/2024,INV2076R,Shirt,HV,HV,Shirt Premium Striped,BC499407,1896.1,7116.76,YUVA-8214/7,H,39,4,PRFT,Red,Checks,1779.19,1414.95
+Alice Brown,7776665553,03/06/2024,INV4263,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Plain,BC499889,249.07,911.72,ALFA-8745/3,F,41,1,PRFT,Red,Print,911.72,701.82
+Caroline,9998887771,07/06/2024,INV6562,Shirt,Sero,Uth,Shirt Premium Checked,BC635280,88.94,1708.8,BETA8969,F,42,2,PRFT,White,Plain,854.4,550.18
+Stefan Davis,5554443335,02/03/2024,INV5720R,Shirt,HV,HV,Shirt Premium Checked,BC350021,208.99,2895.86,BETA8984,H,36,2,PRFCO,White,Checks,1447.93,1118.55
+Bob Elenason,6665554444,31/05/2024,INV4770R,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Striped,BC810687,283.29,2890.2,ALFA-8745/5,F,41,3,PRFCO,Grey,Checks,963.4,705.45
+Elena Salvatore,9998887771,12/06/2024,INV6562R,Shirt,HV,HV,Shirt Premium Checked,BC635280,45.41,854.4,BETA8970,F,42,1,PRFT,Black,Plain,854.4,550.18
+Stefan Davis,5554443335,04/07/2024,INV6060,Shirt,Sero,Premium,Shirt Premium Printed,BC301332,293.46,7464.45,BETA8977,F,36,5,PRFT,Red,Checks,1492.89,1288.24
+Alice Brown,7776665553,21/12/2024,INV7653R,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Checked,BC265759,299.37,1937.74,GAMA8557,P,39,2,PRFRS,Black,Plain,968.87,790.12
+Elena Salvatore,9998887771,07/09/2024,INV9612R,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Checked,BC231414,179.75,1385,GAMA8552,P,39,2,MEM,Grey,Plain,692.5,587.74
+Jane Smith,8887776662,12/08/2024,INV9586,Shirt,Sero,White Gold,Shirt Premium Striped,BC506235,145.55,1925.28,BETA8975,F,42,3,PRFT,White,Plain,641.76,515.66
+Bob Elenason,6665554444,14/08/2024,INV7785,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Checked,BC461939,46.68,2840.65,BETA8965,H,41,5,PRFT,Green,Plain,568.13,408.25
+Bob Elenason,6665554444,19/08/2024,INV7785R,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Checked,BC461939,261.57,1136.26,BETA8966,H,41,2,PRFT,Green,Plain,568.13,408.25
+Elena Salvatore,9998887771,20/04/2024,INV7163,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Plain,BC488028,60.09,736.11,ALFA-8745/3,F,42,1,PRFCO,Red,Plain,736.11,578.11
+Bob Elenason,6665554444,20/08/2024,INV7532,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Printed,BC427704,390.39,1747.66,YUVA-8214/8,H,37,1,PRFT,Red,Checks,1747.66,1097.48
+Jack,8887776662,07/09/2024,INV6194,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Striped,BC401769,58.51,563.1,MC-8541/1,P,39,1,PRFT,Blue,Plain,563.1,499.24
+Alice Brown,7776665553,14/09/2024,INV9641,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Plain,BC362147,134.02,1567.1,BETA8980,H,42,1,PRFT,Green,Checks,1567.1,1182.8
+Bob Elenason,6665554444,15/11/2024,INV2402,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Checked,BC509420,167.67,1620.97,BETA8985,F,41,1,MEM,Black,Plain,1620.97,1146.23
+George,6665554444,05/11/2024,INV8126,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Printed,BC480959,179.98,1656.6,GAMA8547,F,36,3,PRFRS,Green,Print,552.2,342.46
+Caroline,9998887771,16/09/2024,INV7299,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Checked,BC571579,1712.22,5809.74,BETA8973,F,38,3,PRFT,Green,Plain,1936.58,1423.69
+Caroline,9998887771,22/09/2024,INV4397,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Printed,BC428993,236.89,2830.22,MC-8541/8,P,40,2,PRFT,Grey,Plain,1415.11,930.69
+Elena Salvatore,9998887771,27/09/2024,INV4397R,Trousers,Sero Trousers,Formal Trousers,Trouser Premium Printed,BC428993,654.78,2830.22,MC-8541/9,P,40,2,PRFT,Grey,Plain,1415.11,930.69
+Alice Brown,7776665553,11/10/2024,INV1982,Trousers,Sero Trousers,Denim,Trouser Premium Striped,BC797660,367.82,5467.52,YUVA-8214/9,F,38,4,PRFT,Black,Checks,1366.88,907.36
+Bob Elenason,6665554444,15/10/2024,INV8354,Trousers,Sero Trousers,Denim,Trouser Premium Printed,BC171603,557.43,4111.64,BETA8971,F,42,4,PRFT,Green,Checks,1027.91,639.62
+Alice Brown,7776665553,16/10/2024,INV1982R,Trousers,Sero Trousers,Denim,Trouser Premium Striped,BC797660,141.33,4100.64,ALFA-8745/1,F,38,3,PRFT,Black,Checks,1366.88,907.36
+Bob Elenason,6665554444,20/10/2024,INV8354R,Trousers,Sero Trousers,Denim,Trouser Premium Printed,BC171603,70.99,3083.73,BETA8972,F,42,3,PRFT,Green,Checks,1027.91,639.62
+Caroline,9998887771,21/10/2024,INV8033,Trousers,Sero Trousers,Denim,Trouser Premium Checked,BC524707,165.26,1264.38,BETA8968,F,42,2,PRFT,Grey,Plain,632.19,539.48
+Jane Smith,8887776662,10/11/2024,INV7576,Shirt,Sero,Marry Me,Shirt Premium Plain,BC848255,397.42,2231.25,MC-8541/5,H,37,3,PRFRS,Black,Plain,743.75,667.28
+Stefan Davis,5554443335,27/10/2024,INV8802,Trousers,Sero Trousers,Denim,Trouser Premium Checked,BC573962,302.44,2364.96,YUVA-8214/4,F,41,4,PRFT,White,Checks,591.24,439.7
+Alice Brown,7776665553,07/08/2024,INV1430,Trousers,Sero Trousers,Denim,Trouser Premium Striped,BC836833,599.95,2698.96,ALFA-8745/2,H,38,2,PRFCO,Blue,Plain,1349.48,971.94
+Stefan Davis,5554443335,27/10/2024,INV7955,Shirt,Sero,Formals,Shirt Premium Plain,BC671971,191.92,3838.96,GAMA8546,F,36,4,PRFT,Grey,Plain,959.74,749.35
+Alice Brown,7776665553,28/10/2024,INV1126,Trousers,Sero Trousers,Denim,Trouser Premium Plain,BC498676,247.25,1792.65,BETA8967,F,40,1,PRFT,Red,Print,1792.65,1098.34
+Stefan Davis,5554443335,10/01/2024,INV5720,Shirt,Sero,Formals,Shirt Premium Checked,BC350021,253.04,2895.86,BETA8983,H,36,10,PRFCO,White,Checks,1447.93,1118.55
+Caroline,9998887771,22/09/2024,INV3507,Trousers,Sero Trousers,Denim,Trouser Premium Striped,BC843788,544.74,2905.18,GAMA8553,H,42,2,PRFCO,Black,Plain,1452.59,1111.6
+Alice Brown,7776665553,16/12/2024,INV7653,Trousers,Sero Trousers,Denim,Trouser Premium Checked,BC265759,850.51,2906.61,GAMA8556,P,39,3,PRFRS,Black,Plain,968.87,790.12
+Alice Brown,7776665553,26/10/2024,INV4189,Trousers,Sero Trousers,Denim,Trouser Premium Checked,BC505116,547.66,3272.58,MC-8541/4,P,42,3,PRFCO,Blue,Checks,1090.86,914.65
+Bob Elenason,6665554444,11/11/2024,INV6374,Shirt,Sero,Formals,Shirt Premium Striped,BC780776,137.19,3370.9,ALFA-8745/8,F,36,5,PRFCO,Black,Print,674.18,452
+Bob Elenason,6665554444,29/10/2024,INV9837,Trousers,Sero Trousers,Denim,Trouser Premium Striped,BC970813,72.05,1706.35,ALFA-8745/6,F,42,1,PRFT,Grey,Plain,1706.35,1263.55
+Caroline,9998887771,02/09/2024,INV9612,Trousers,Sero Trousers,Denim,Trouser Premium Checked,BC231414,664.59,3462.5,GAMA8551,P,39,5,MEM,Grey,Plain,692.5,587.74
+Caroline,9998887771,28/11/2024,INV6493,Shirt,Sero,Formals,Shirt Premium Striped,BC970068,931.21,3717.58,BETA8982,F,42,2,MEM,White,Checks,1858.79,1125.87
+Stefan Davis,5554443335,01/11/2024,INV8802R,Trousers,Sero Trousers,Denim,Trouser Premium Checked,BC573962,52.14,2364.96,YUVA-8214/5,F,41,4,PRFT,White,Checks,591.24,439.7
+Alice Brown,7776665553,02/11/2024,INV4109,Shirt,Sero,Formals,Shirt Premium Plain,BC772875,522.18,8402.35,YUVA-8214/1,F,36,5,PRFT,Blue,Plain,1680.47,1111.73
+Jane Smith,8887776662,01/11/2024,INV1046,Trousers,Sero Trousers,Denim,Trouser Premium Striped,BC937302,65.23,4149.84,YUVA-8214/3,F,37,3,PRFCO,Black,Plain,1383.28,836.52
+Stefan Davis,5554443335,25/09/2024,INV7229,Shirt,Sero,Formals,Shirt Premium Checked,BC300051,1168.43,4462.28,MC-8541/7,H,39,4,PRFRS,White,Plain,1115.57,928.7
+Stefan Davis,5554443335,28/12/2024,INV5911,Trousers,Sero Trousers,Denim,Trouser Premium Striped,BC806537,778.33,4491.5,MC-8541/6,H,42,5,PRFCO,Green,Print,898.3,715.66
+Bob Elenason,6665554444,26/05/2024,INV4770,Trousers,Sero Trousers,Cotton Trousers,Trouser Premium Striped,BC810687,527.26,4817,ALFA-8745/4,F,41,5,PRFCO,Grey,Checks,963.4,705.45
+Caroline,9998887771,26/08/2024,INV3007,Trousers,Sero Trousers,Cotton Trousers,Trouser Premium Plain,BC201514,293.9,5160.66,MC-8541/1,P,42,3,MEM,Blue,Plain,1720.22,1514.01
+Alice Brown,7776665553,16/02/2024,INV7442,Trousers,Sero Trousers,Cotton Trousers,Trouser Premium Striped,BC151021,1159.42,5312.28,MC-8541/3,H,40,3,MEM,Black,Checks,1770.76,1291.38
+Alice Brown,7776665553,07/11/2024,INV4109R,Shirt,Sero,Formals,Shirt Premium Plain,BC772875,331.28,3360.94,YUVA-8214/2,F,36,2,PRFT,Blue,Plain,1680.47,1111.73
+Jane Smith,8887776662,10/11/2024,INV3414,Trousers,Sero Trousers,Cotton Trousers,Trouser Premium Printed,BC466566,190.43,1991.79,BETA8981,F,39,1,PRFT,Blue,Print,1991.79,1419.1
+Damon,9699458755,31/03/2024,INV4804,Trousers,Sero Trousers,Cotton Trousers,Trouser Premium Striped,BC799233,1102.85,5753.55,ALFA-8745/2,F,41,3,PRFRS,Red,Print,1917.85,1718.96
+Jane Smith,8887776662,13/11/2024,INV3712,Trousers,Sero Trousers,Cotton Trousers,Trouser Premium Striped,BC809217,923.14,3404,BETA8978,H,40,4,PRFT,Grey,Print,851,571.66
+Bob Elenason,6665554444,02/09/2024,INV4505,Shirt,Sero,Formals,Shirt Premium Striped,BC243941,577.45,5827.68,MC-8541/1,F,37,4,PRFCO,Grey,Plain,1456.92,897.09
+Elena Salvatore,9998887771,27/03/2024,INV3526,Shirt,Freezone,Freezone Casuals,Shirt Premium Striped,BC983456,1095.31,5906.76,GAMA8554,F,36,4,PRFCO,Grey,Plain,1476.69,1225.78
+Stefan Davis,5554443335,02/11/2024,INV8311,Shirt,Freezone,Freezone Casuals,Shirt Premium Printed,BC309902,1199.64,5987.67,GAMA8549,F,39,3,PRFRS,Grey,Print,1995.89,1682.84
+Stefan Davis,5554443335,02/06/2024,INV3580,Shirt,Freezone,Freezone Casuals,Shirt Premium Plain,BC227257,259.09,6655.15,GAMA8550,F,42,5,MEM,Red,Plain,1331.03,945.93
+Elena Salvatore,9998887771,19/06/2024,INV3185,Shirt,Freezone,Freezone Casuals,Shirt Premium Striped,BC953025,76.21,6869,GAMA8542,H,41,4,MEM,Grey,Plain,1717.25,1062.86
+Alice Brown,7776665553,20/09/2024,INV7524,Trousers,Sero Trousers,Cotton Trousers,Trouser Premium Plain,BC400009,746.25,7336.92,GAMA8544,F,38,4,PRFCO,Black,Print,1834.23,1509.56
+Jane Smith,8887776662,18/11/2024,INV3712R,Trousers,Sero Trousers,Cotton Trousers,Trouser Premium Striped,BC809217,471.47,3404,BETA8979,H,40,4,PRFT,Grey,Print,851,571.66
+Jane Smith,8887776662,11/12/2024,INV7511,Trousers,Sero Trousers,Cotton Trousers,Trouser Premium Checked,BC377304,350.98,1733.63,ALFA-8745/7,H,38,1,PRFT,Green,Print,1733.63,1529.21
+Stefan Davis,5554443335,19/06/2024,INV2335,Shirt,Freezone,Freezone Casuals,Shirt Premium Printed,BC235215,241.08,8598.9,BETA8976,F,38,5,MEM,Grey,Plain,1719.78,1377.6
+Caroline,9998887771,13/12/2024,INV8371,Trousers,Sero Trousers,Cotton Trousers,Trouser Premium Checked,BC701800,261.82,1748.84,GAMA8548,F,39,2,PRFT,Grey,Plain,874.42,554.41

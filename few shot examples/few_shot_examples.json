@@ -1,0 +1,161 @@
+[
+  {
+    "id": "MUST_HAVE_1",
+    "query": "Show me total sales for PRFTL store in December 2024",
+    "sql": "SELECT SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale WHERE Store_Name = 'PRFTL' AND BILL_DATE BETWEEN '2024-12-01' AND '2024-12-31';",
+    "reasoning": "Simple fact retrieval with explicit date range. Specific store requested so no store-wise breakdown needed. Always use BETWEEN for date filtering. Sales = both quantity AND revenue.",
+    "pattern_type": "simple_fact_retrieval"
+  },
+  
+  {
+    "id": "MUST_HAVE_2",
+    "query": "What are the top 5 best-selling items overall?",
+    "sql": "SELECT Store_Name, Item_Name, SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale GROUP BY Store_Name, Item_Name ORDER BY total_quantity DESC LIMIT 5;",
+    "reasoning": "Ranking query uses ORDER BY + LIMIT. No specific store asked, so include Store_Name in grouping to show which store the top items are from.",
+    "pattern_type": "ranking"
+  },
+  
+  {
+    "id": "MUST_HAVE_3",
+    "query": "Show me the top 3 patterns for each store",
+    "sql": "WITH RankedPatterns AS (SELECT Store_Name, Item_Division, Pattern, SUM(SALE_QUANTITY) AS total_quantity, ROW_NUMBER() OVER (PARTITION BY Store_Name, Item_Division ORDER BY SUM(SALE_QUANTITY) DESC) AS rank FROM Bill_Date_Sale GROUP BY Store_Name, Item_Division, Pattern) SELECT Store_Name, Item_Division, Pattern, total_quantity FROM RankedPatterns WHERE rank <= 3 ORDER BY Store_Name, Item_Division, rank;",
+    "reasoning": "Top N per group requires window function with PARTITION BY. CRITICAL: Pattern must always be grouped with Item_Division (shirts vs trousers have different pattern preferences). This is the pattern for any 'for each X, show top Y' query.",
+    "pattern_type": "top_n_per_group"
+  },
+  
+  {
+    "id": "4",
+    "query": "Compare PRFTL vs PRFCO sales side by side",
+    "sql": "SELECT SUM(CASE WHEN Store_Name = 'PRFTL' THEN SALE_QUANTITY ELSE 0 END) AS PRFTL_quantity, SUM(CASE WHEN Store_Name = 'PRFTL' THEN Total_Amount ELSE 0 END) AS PRFTL_revenue, SUM(CASE WHEN Store_Name = 'PRFCO' THEN SALE_QUANTITY ELSE 0 END) AS PRFCO_quantity, SUM(CASE WHEN Store_Name = 'PRFCO' THEN Total_Amount ELSE 0 END) AS PRFCO_revenue FROM Bill_Date_Sale WHERE Store_Name IN ('PRFTL', 'PRFCO');",
+    "reasoning": "Side-by-side comparison uses CASE expressions to pivot data into columns. Specific stores requested, so no store-wise breakdown. This gives one row with both values for easy comparison.",
+    "pattern_type": "side_by_side_comparison"
+  },
+  
+  {
+    "id": "MUST_HAVE_4",
+    "query": "Show me monthly sales trend for the last 6 months",
+    "sql": "SELECT Store_Name, DATE_FORMAT(BILL_DATE, '%Y-%m') AS month, SUM(SALE_QUANTITY) AS monthly_quantity, SUM(Total_Amount) AS monthly_revenue FROM Bill_Date_Sale WHERE BILL_DATE >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH) GROUP BY Store_Name, DATE_FORMAT(BILL_DATE, '%Y-%m') UNION ALL SELECT 'GRAND_TOTAL' AS Store_Name, DATE_FORMAT(BILL_DATE, '%Y-%m') AS month, SUM(SALE_QUANTITY) AS monthly_quantity, SUM(Total_Amount) AS monthly_revenue FROM Bill_Date_Sale WHERE BILL_DATE >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH) GROUP BY DATE_FORMAT(BILL_DATE, '%Y-%m') ORDER BY month, Store_Name;",
+    "reasoning": "Trend over months uses DATE_FORMAT with '%Y-%m'. No specific store requested, so break down by Store_Name AND provide GRAND_TOTAL using UNION ALL. For 6+ months group by month, for <1 month group by day, for 1-6 weeks group by week.",
+    "pattern_type": "time_trend"
+  },
+  
+  {
+    "id": "5",
+    "query": "Show weekly sales trend for January 2025 in PRFTL store",
+    "sql": "SELECT YEARWEEK(BILL_DATE, 1) AS year_week, SUM(SALE_QUANTITY) AS weekly_quantity, SUM(Total_Amount) AS weekly_revenue FROM Bill_Date_Sale WHERE Store_Name = 'PRFTL' AND BILL_DATE BETWEEN '2025-01-01' AND '2025-01-31' GROUP BY YEARWEEK(BILL_DATE, 1) ORDER BY year_week;",
+    "reasoning": "Weekly grouping within a month uses YEARWEEK(). Mode 1 makes Monday week start. Specific store requested so no store breakdown needed.",
+    "pattern_type": "time_trend"
+  },
+  
+  {
+    "id": "MUST_HAVE_5",
+    "query": "Compare Diwali 2024 sales vs Pongal 2025 sales",
+    "sql": "SELECT 'Diwali 2024' AS festival, Store_Name, SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale WHERE BILL_DATE BETWEEN '2024-10-01' AND '2024-10-31' GROUP BY Store_Name UNION ALL SELECT 'Pongal 2025' AS festival, Store_Name, SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale WHERE BILL_DATE BETWEEN '2025-01-01' AND '2025-01-15' GROUP BY Store_Name UNION ALL SELECT 'Diwali 2024' AS festival, 'GRAND_TOTAL' AS Store_Name, SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale WHERE BILL_DATE BETWEEN '2024-10-01' AND '2024-10-31' UNION ALL SELECT 'Pongal 2025' AS festival, 'GRAND_TOTAL' AS Store_Name, SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale WHERE BILL_DATE BETWEEN '2025-01-01' AND '2025-01-15' ORDER BY festival, Store_Name;",
+    "reasoning": "Festival comparison uses UNION ALL with hardcoded date ranges (no festival column exists). No specific store requested, so include store-wise breakdown PLUS grand totals for each festival. Each SELECT gets its own WHERE clause with BETWEEN.",
+    "pattern_type": "festival_comparison"
+  },
+  
+  {
+    "id": "6",
+    "query": "What's the total revenue by sub-brand and store?",
+    "sql": "SELECT Store_Name, Sub_Brand, SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale GROUP BY Store_Name, Sub_Brand UNION ALL SELECT 'GRAND_TOTAL' AS Store_Name, Sub_Brand, SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale GROUP BY Sub_Brand ORDER BY Store_Name, total_revenue DESC;",
+    "reasoning": "Multi-dimensional grouping lists all dimensions in GROUP BY. No specific store requested, so include Store_Name AND grand total. Order by key metric for analysis.",
+    "pattern_type": "multi_dimensional_grouping"
+  },
+  
+  {
+    "id": "7",
+    "query": "What's the average transaction value per store?",
+    "sql": "SELECT Store_Name, COUNT(DISTINCT BILL_No) AS transaction_count, SUM(Total_Amount) / COUNT(DISTINCT BILL_No) AS avg_transaction_value FROM Bill_Date_Sale GROUP BY Store_Name UNION ALL SELECT 'GRAND_TOTAL' AS Store_Name, COUNT(DISTINCT BILL_No) AS transaction_count, SUM(Total_Amount) / COUNT(DISTINCT BILL_No) AS avg_transaction_value FROM Bill_Date_Sale ORDER BY avg_transaction_value DESC;",
+    "reasoning": "Calculated metrics divide aggregates. Use COUNT(DISTINCT BILL_No) for transaction count, not rows (one bill = multiple items). No specific store requested, so break down by store with grand total.",
+    "pattern_type": "calculated_metric"
+  },
+  
+  {
+    "id": "8",
+    "query": "Which stores had sales over 100,000 last month?",
+    "sql": "SELECT Store_Name, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale WHERE MONTH(BILL_DATE) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) AND YEAR(BILL_DATE) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) GROUP BY Store_Name HAVING SUM(Total_Amount) > 100000 ORDER BY total_revenue DESC;",
+    "reasoning": "Conditional filtering on aggregates uses HAVING clause after GROUP BY. HAVING filters groups, WHERE filters rows before grouping. Query asks 'which stores' so only show stores meeting criteria (no grand total needed here).",
+    "pattern_type": "conditional_aggregation"
+  },
+  
+  {
+    "id": "9",
+    "query": "Show me sales by pattern and color for Shirts",
+    "sql": "SELECT Store_Name, Pattern, Color, SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale WHERE Item_Division = 'Shirt' GROUP BY Store_Name, Pattern, Color UNION ALL SELECT 'GRAND_TOTAL' AS Store_Name, Pattern, Color, SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale WHERE Item_Division = 'Shirt' GROUP BY Pattern, Color ORDER BY Store_Name, total_quantity DESC;",
+    "reasoning": "Segmentation query groups by the attributes being analyzed. WHERE filters to the Item_Division first (Pattern always goes with Item_Division). No specific store requested, so include store breakdown and grand total.",
+    "pattern_type": "segmentation"
+  },
+  
+  {
+    "id": "10",
+    "query": "What are the top 2 colors for each pattern in Trousers during December 2024?",
+    "sql": "WITH RankedColors AS (SELECT Store_Name, Pattern, Color, SUM(SALE_QUANTITY) AS total_quantity, ROW_NUMBER() OVER (PARTITION BY Store_Name, Pattern ORDER BY SUM(SALE_QUANTITY) DESC) AS rank FROM Bill_Date_Sale WHERE Item_Division = 'Trousers' AND BILL_DATE BETWEEN '2024-12-01' AND '2024-12-31' GROUP BY Store_Name, Pattern, Color) SELECT Store_Name, Pattern, Color, total_quantity FROM RankedColors WHERE rank <= 2 ORDER BY Store_Name, Pattern, rank;",
+    "reasoning": "Top N per group with date filter. Pattern must always be analyzed within Item_Division context (specified Trousers here). No specific store requested, so PARTITION BY includes Store_Name to show top colors per pattern per store.",
+    "pattern_type": "top_n_per_group"
+  },
+  
+  {
+    "id": "11",
+    "query": "Show me sales of Checks vs Plain patterns in Shirts during Diwali 2024",
+    "sql": "SELECT Store_Name, Pattern, SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale WHERE Item_Division = 'Shirt' AND Pattern IN ('Checks', 'Plain') AND BILL_DATE BETWEEN '2024-10-01' AND '2024-10-31' GROUP BY Store_Name, Pattern UNION ALL SELECT 'GRAND_TOTAL' AS Store_Name, Pattern, SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale WHERE Item_Division = 'Shirt' AND Pattern IN ('Checks', 'Plain') AND BILL_DATE BETWEEN '2024-10-01' AND '2024-10-31' GROUP BY Pattern ORDER BY Store_Name, Pattern;",
+    "reasoning": "Comparing specific patterns within Item_Division uses IN clause with GROUP BY. CRITICAL: Must specify Item_Division when analyzing Pattern (can't mix shirt and trouser patterns). No specific store requested, so include store breakdown and grand total.",
+    "pattern_type": "within_dimension_comparison"
+  },
+  
+  {
+    "id": "12",
+    "query": "How many repeat customers shopped in December 2024?",
+    "sql": "SELECT Store_Name, COUNT(DISTINCT CASE WHEN visit_count > 1 THEN Customer_Contact END) AS repeat_customers FROM (SELECT Store_Name, Customer_Contact, COUNT(DISTINCT BILL_No) AS visit_count FROM Bill_Date_Sale WHERE BILL_DATE BETWEEN '2024-12-01' AND '2024-12-31' GROUP BY Store_Name, Customer_Contact) AS customer_visits GROUP BY Store_Name UNION ALL SELECT 'GRAND_TOTAL' AS Store_Name, COUNT(DISTINCT CASE WHEN visit_count > 1 THEN Customer_Contact END) AS repeat_customers FROM (SELECT Customer_Contact, COUNT(DISTINCT BILL_No) AS visit_count FROM Bill_Date_Sale WHERE BILL_DATE BETWEEN '2024-12-01' AND '2024-12-31' GROUP BY Customer_Contact) AS customer_visits ORDER BY Store_Name;",
+    "reasoning": "Customer analysis must use Customer_Contact for uniqueness, NOT Customer_Name (same name can be different people). Count distinct contacts with multiple bills. No specific store requested, so break down by store with grand total.",
+    "pattern_type": "customer_analysis"
+  },
+  
+  {
+    "id": "NEW_13",
+    "query": "Show me sub-brand performance in PRFTL store for last quarter",
+    "sql": "SELECT Sub_Brand, SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale WHERE Store_Name = 'PRFTL' AND QUARTER(BILL_DATE) = QUARTER(DATE_SUB(CURDATE(), INTERVAL 1 QUARTER)) AND YEAR(BILL_DATE) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 QUARTER)) GROUP BY Sub_Brand ORDER BY total_revenue DESC;",
+    "reasoning": "Quarterly filtering uses QUARTER() and YEAR() functions. Must match both quarter AND year to get the correct period. Specific store requested so no store breakdown needed.",
+    "pattern_type": "quarter_filtering"
+  },
+  
+  {
+    "id": "MUST_HAVE_6",
+    "query": "Which MRP price ranges sold the most during Diwali 2024?",
+    "sql": "SELECT Store_Name, FLOOR(MRP / 1000) * 1000 AS mrp_range, SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale WHERE BILL_DATE BETWEEN '2024-10-01' AND '2024-10-31' GROUP BY Store_Name, FLOOR(MRP / 1000) * 1000 UNION ALL SELECT 'GRAND_TOTAL' AS Store_Name, FLOOR(MRP / 1000) * 1000 AS mrp_range, SUM(SALE_QUANTITY) AS total_quantity, SUM(Total_Amount) AS total_revenue FROM Bill_Date_Sale WHERE BILL_DATE BETWEEN '2024-10-01' AND '2024-10-31' GROUP BY FLOOR(MRP / 1000) * 1000 ORDER BY Store_Name, total_quantity DESC;",
+    "reasoning": "MRP range bucketing uses FLOOR(MRP / 1000) * 1000 to create price bands (e.g., 2000-2999 becomes 2000). The divisor (1000) determines bucket size. No specific store requested, so include store breakdown and grand total.",
+    "pattern_type": "price_range_bucketing"
+  },
+  
+  {
+    "id": "NEW_15",
+    "query": "What percentage of customers who shopped before Diwali 2024 returned during Diwali 2024 at PRFTL?",
+    "sql": "SELECT ROUND((COUNT(DISTINCT CASE WHEN Customer_Contact IN (SELECT DISTINCT Customer_Contact FROM Bill_Date_Sale WHERE Store_Name = 'PRFTL' AND BILL_DATE BETWEEN '2024-10-01' AND '2024-10-31') THEN Customer_Contact END) * 100.0) / COUNT(DISTINCT Customer_Contact), 2) AS returning_customer_percentage FROM Bill_Date_Sale WHERE Store_Name = 'PRFTL' AND BILL_DATE < '2024-10-01';",
+    "reasoning": "Percentage calculation: (count of customers who meet condition / total customers) * 100. Use Customer_Contact for uniqueness. Subquery in CASE identifies customers who returned during the festival period. Specific store requested so no breakdown needed.",
+    "pattern_type": "percentage_calculation"
+  },
+  
+  {
+    "id": "NEW_16",
+    "query": "What percent of customers did NOT shop during Diwali 2024?",
+    "sql": "SELECT Store_Name, ROUND((COUNT(DISTINCT Customer_Contact) * 100.0) / (SELECT COUNT(DISTINCT Customer_Contact) FROM Bill_Date_Sale WHERE Store_Name = b.Store_Name AND BILL_DATE < '2024-10-01'), 2) AS percent_did_not_shop FROM Bill_Date_Sale b WHERE BILL_DATE < '2024-10-01' AND Customer_Contact NOT IN (SELECT DISTINCT Customer_Contact FROM Bill_Date_Sale WHERE Store_Name = b.Store_Name AND BILL_DATE BETWEEN '2024-10-01' AND '2024-10-31') GROUP BY Store_Name UNION ALL SELECT 'GRAND_TOTAL' AS Store_Name, ROUND((COUNT(DISTINCT Customer_Contact) * 100.0) / (SELECT COUNT(DISTINCT Customer_Contact) FROM Bill_Date_Sale WHERE BILL_DATE < '2024-10-01'), 2) AS percent_did_not_shop FROM Bill_Date_Sale WHERE BILL_DATE < '2024-10-01' AND Customer_Contact NOT IN (SELECT DISTINCT Customer_Contact FROM Bill_Date_Sale WHERE BILL_DATE BETWEEN '2024-10-01' AND '2024-10-31') ORDER BY Store_Name;",
+    "reasoning": "NOT IN pattern identifies customers who didn't meet criteria. Use Customer_Contact for uniqueness. Calculate percentage against the baseline (customers before period). No specific store requested, so include store breakdown and grand total.",
+    "pattern_type": "exclusion_pattern"
+  },
+  
+  {
+    "id": "NEW_17",
+    "query": "Compare sales growth from Diwali 2023 to Diwali 2024",
+    "sql": "SELECT Store_Name, YEAR(BILL_DATE) AS Year, SUM(SALE_QUANTITY) AS Total_Sales, SUM(Total_Amount) AS total_amount FROM Bill_Date_Sale WHERE (BILL_DATE BETWEEN '2023-10-01' AND '2023-10-31') OR (BILL_DATE BETWEEN '2024-10-01' AND '2024-10-31') GROUP BY Store_Name, YEAR(BILL_DATE) UNION ALL SELECT 'GRAND_TOTAL' AS Store_Name, YEAR(BILL_DATE) AS Year, SUM(SALE_QUANTITY) AS Total_Sales, SUM(Total_Amount) AS total_amount FROM Bill_Date_Sale WHERE (BILL_DATE BETWEEN '2023-10-01' AND '2023-10-31') OR (BILL_DATE BETWEEN '2024-10-01' AND '2024-10-31') GROUP BY YEAR(BILL_DATE) ORDER BY Store_Name, Year;",
+    "reasoning": "Year-over-year festival comparison uses OR with multiple date ranges, then GROUP BY YEAR() to separate them. This shows growth by comparing same festival across years. No specific store requested, so include store breakdown and grand total.",
+    "pattern_type": "year_over_year_comparison"
+  },
+  
+  {
+    "id": "NEW_18",
+    "query": "Show average order value for repeat customers during festive vs non-festive seasons",
+    "sql": "WITH Repeat_Customers AS (SELECT Customer_Contact FROM Bill_Date_Sale GROUP BY Customer_Contact HAVING COUNT(DISTINCT BILL_No) > 1), Labeled_Orders AS (SELECT Store_Name, Customer_Contact, Total_Amount, CASE WHEN (MONTH(BILL_DATE) = 10) OR (MONTH(BILL_DATE) = 12 AND DAY(BILL_DATE) BETWEEN 10 AND 25) OR (MONTH(BILL_DATE) = 1 AND DAY(BILL_DATE) BETWEEN 1 AND 15) THEN 'Festive' ELSE 'Non-Festive' END AS Season FROM Bill_Date_Sale WHERE Customer_Contact IN (SELECT Customer_Contact FROM Repeat_Customers)) SELECT Store_Name, Season, ROUND(AVG(Total_Amount), 2) AS avg_order_value FROM Labeled_Orders GROUP BY Store_Name, Season UNION ALL SELECT 'GRAND_TOTAL' AS Store_Name, Season, ROUND(AVG(Total_Amount), 2) AS avg_order_value FROM Labeled_Orders GROUP BY Season ORDER BY Store_Name, Season;",
+    "reasoning": "CASE with date conditions labels rows into categories (Festive/Non-Festive). Use CTEs to identify repeat customers first (Customer_Contact based), then label orders, then aggregate. No specific store requested, so include store breakdown and grand total.",
+    "pattern_type": "conditional_labeling"
+  }
+]
