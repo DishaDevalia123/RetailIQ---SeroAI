@@ -24,8 +24,8 @@ Ask your retail sales data questions in plain English and get back calculated an
 
 *Revenue declined by roughly 15% from 2024 to 2025.*
 
-*Want to see which store or category drove the decline?*
+*Want to dig deeper into what factors might have contributed to this — a specific store, a category, or a seasonal dip?*
 
-**Follow-up:** "Break it down by store"
+*Follow-up: "What drove the drop in Q3?"*
 
-RetailIQ recalls the prior comparison and returns a per-store breakdown alongside a chart, without needing the year range repeated.
+RetailIQ recalls the prior comparison, narrows the analysis to Q3, and surfaces the contributing store and category breakdowns alongside a chart — without needing the year range repeated.
