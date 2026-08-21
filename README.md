@@ -16,13 +16,9 @@ Ask your retail sales data questions in plain English and get back calculated an
 **Tech Stack**
 
 Backend -	Python, FastAPI
-
 LLM -	OpenAI API (GPT)
-
 Database -	MySQL
-
 Data Handling -	Pandas
-
 Visualization -	Matplotlib, Seaborn
 
 
