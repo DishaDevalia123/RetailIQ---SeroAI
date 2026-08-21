@@ -20,7 +20,7 @@ Ask your retail sales data questions in plain English and get back calculated an
 - Data Handling -	Pandas
 - Visualization -	Matplotlib, Seaborn
 
-## Example
+**Example**
 
 **Query:** "How did revenue change from 2024 to 2025?"
 
