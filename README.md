@@ -13,6 +13,13 @@ Ask your retail sales data questions in plain English and get back calculated an
 - OpenAI API (GPT) — powers language understanding and SQL generation
 - FastAPI + MySQL — backend and data layer
 
+**Tech Stack**
+Backend -	Python, FastAPI
+LLM -	OpenAI API (GPT)
+Database -	MySQL
+Data Handling -	Pandas
+Visualization -	Matplotlib, Seaborn
+
 ## Example
 
 **Query:** "How did revenue change from 2024 to 2025?"
